@@ -46,9 +46,11 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                  if(r1.isChecked()){
                      i.setImageResource(R.drawable.piccle);
+                     t3.setText("피클을 선택하셨습니다.");
                  }
                 else if(r2.isChecked()){
                      i.setImageResource(R.drawable.sorce);
+                     t3.setText("소스를 선택하셨습니다.");
                  }
             }
         });
@@ -56,20 +58,19 @@ public class MainActivity extends AppCompatActivity {
          b.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                  int pizza = Integer.parseInt(e1.getText().toString());
-                  int spaghetti = Integer.parseInt(e2.getText().toString());
-                  int salad = Integer.parseInt(e3.getText().toString());
-
-                  double total = ((16000*pizza)+(11000*spaghetti)+(4000*salad));
-                 if(c.isChecked())
-                     total -= total*0.7;
-                 t1.setText("주문개수 :" +(pizza+spaghetti+salad));
-                 t2.setText("주문금액 :" +total);
-                 if(r1.isChecked()){
-                     t3.setText("피클입니다.");
+                  double pizza = Double.parseDouble(e1.getText().toString());
+                  double spaghetti = Double.parseDouble(e2.getText().toString());
+                  double salad = Double.parseDouble(e3.getText().toString());
+                  double result = 0;
+                 if(c.isChecked()){
+                     result = 16000 * pizza + 11000 * spaghetti + 4000 * salad * 0.07;
+                     t1.setText("주문개수 :" + (pizza + spaghetti + salad));
+                     t2.setText("주문금액 :" + result);
                  }
-                 else if(r2.isChecked()){
-                     t3.setText("소스입니다.");
+                 else{
+                     result = 16000 * pizza + 11000 * spaghetti + 4000 * salad;
+                     t1.setText("주문개수 :" + (pizza + spaghetti + salad));
+                     t2.setText("주문금액 :" + result);
                  }
              }
          });
